@@ -1,27 +1,20 @@
-// use server'
+// src/ai/flows/suggest-maintenance-commands.ts
 'use server';
 
-/**
- * @fileOverview AI-powered command suggestion for device maintenance.
- *
- * - suggestMaintenanceCommands - Analyzes device logs and suggests maintenance commands.
- * - SuggestMaintenanceCommandsInput - The input type for the suggestMaintenanceCommands function.
- * - SuggestMaintenanceCommandsOutput - The return type for the suggestMaintenanceCommands function.
- */
+import '@/ai/genkit'; // IMPORTANT: Import for side effect to run configureGenkit()
 
-import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { defineFlow, definePrompt } from '@genkit-ai/ai'; // Correct imports
+import { geminiPro } from '@genkit-ai/googleai';    // Import a specific model reference
+import { z } from 'zod'; // Use zod directly for schema definition
 
-const SuggestMaintenanceCommandsInputSchema = z.object({
-  deviceLogs: z
-    .string()
-    .describe('The logs from the target Android device.'),
+export const SuggestMaintenanceCommandsInputSchema = z.object({
+  deviceLogs: z.string().describe('The logs from the target Android device.'),
 });
 export type SuggestMaintenanceCommandsInput = z.infer<
   typeof SuggestMaintenanceCommandsInputSchema
 >;
 
-const SuggestMaintenanceCommandsOutputSchema = z.object({
+export const SuggestMaintenanceCommandsOutputSchema = z.object({
   suggestedCommands: z
     .array(z.string())
     .describe(
@@ -37,33 +30,47 @@ export type SuggestMaintenanceCommandsOutput = z.infer<
   typeof SuggestMaintenanceCommandsOutputSchema
 >;
 
-export async function suggestMaintenanceCommands(
-  input: SuggestMaintenanceCommandsInput
-): Promise<SuggestMaintenanceCommandsOutput> {
-  return suggestMaintenanceCommandsFlow(input);
-}
-
-const prompt = ai.definePrompt({
-  name: 'suggestMaintenanceCommandsPrompt',
-  input: {schema: SuggestMaintenanceCommandsInputSchema},
-  output: {schema: SuggestMaintenanceCommandsOutputSchema},
-  prompt: `You are an expert Android device maintenance assistant.
-
-  Analyze the provided device logs and suggest a list of maintenance commands to optimize the device's performance and security.
-  Explain your reasoning for each suggested command.
-
-  Device Logs:
-  {{deviceLogs}}`,
-});
-
-const suggestMaintenanceCommandsFlow = ai.defineFlow(
+// Define the prompt using a specific model
+const suggestMaintenancePrompt = definePrompt(
   {
-    name: 'suggestMaintenanceCommandsFlow',
+    name: 'suggestMaintenanceCommandsPrompt',
+    input: { schema: SuggestMaintenanceCommandsInputSchema },
+    output: { schema: SuggestMaintenanceCommandsOutputSchema },
+    prompt: `You are an expert Android device maintenance assistant.
+Analyze the provided device logs and suggest a list of maintenance commands to optimize the device's performance and security.
+Explain your reasoning for each suggested command.
+
+Device Logs:
+{{deviceLogs}}`,
+    // You can specify the model directly here:
+    model: geminiPro, // Using the imported model from @genkit-ai/googleai
+                      // You can also use model names like 'gemini-pro' if the googleAI plugin is configured.
+    // Or, configure the model with options:
+    // model: {
+    //   name: 'gemini-pro', // Or other compatible models from Google AI like 'gemini-1.5-flash-latest'
+    //   config: { temperature: 0.5 }
+    // },
+  }
+);
+
+// Define the flow
+const suggestMaintenanceCommandsInternalFlow = defineFlow(
+  {
+    name: 'suggestMaintenanceCommandsInternalFlow',
     inputSchema: SuggestMaintenanceCommandsInputSchema,
     outputSchema: SuggestMaintenanceCommandsOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
+  async (input) => {
+    const result = await suggestMaintenancePrompt.generate({
+      input: input,
+    });
+    return result.output() || { suggestedCommands: [], reasoning: "No output from AI." };
   }
 );
+
+// Exported function to be called from your application (e.g., server action)
+export async function suggestMaintenanceCommands(
+  input: SuggestMaintenanceCommandsInput
+): Promise<SuggestMaintenanceCommandsOutput> {
+  return suggestMaintenanceCommandsInternalFlow.invoke(input);
+}

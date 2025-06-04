@@ -1,18 +1,25 @@
-// src/ai/genkit.ts
-// Genkit SDK initialization
-import { init } from 'genkit';
-import { googleai } from '@genkit-ai/googleai'; // Import the Google AI plugin
+import { configureGenkit } from '@genkit-ai/core';
+import { googleAI } from '@genkit-ai/googleai';
+import { defineModel } from '@genkit-ai/ai'; // Ensure you have @genkit-ai/ai installed
 
-// Initialize Genkit
-init({
-  defaultFlow: 'suggestMaintenanceCommands', // This should match a flow you define
+// Define and export your model
+export const geminiPro = defineModel({
+  name: 'googleAI/gemini-pro', // This is just an identifier for Genkit
+  label: 'Google AI - Gemini Pro',
+  // Assuming you have GOOGLE_API_KEY in your .env.local for the googleAI plugin
+  // The actual model used by the googleAI plugin will be determined by its internal config
+  // or you can specify it if the plugin options allow.
+  // For direct model usage in generate calls, you often pass the model name string
+  // like 'gemini-pro' if the plugin is configured.
+});
+
+configureGenkit({
   plugins: [
-    googleai({
-      apiKey: process.env.GOOGLE_API_KEY, // Access the API key from environment variables
-      // Other Google AI configuration options can go here, e.g., default model
+    googleAI({
+      // You might need to specify your API key here if not globally available
+      // apiKey: process.env.GOOGLE_API_KEY 
     }),
   ],
-  // For local development, set the environment to 'dev'
-  // For deployment, Genkit will detect the environment
-  env: process.env.NODE_ENV === 'production' ? 'prod' : 'dev',
+  logLevel: 'debug',
+  enableTracingAndMetrics: true,
 });
