@@ -1,20 +1,15 @@
-"use client"; // Keep this if you added it, though root layouts are usually Server Components unless specific client hooks are needed directly in them.
+import { GeistSans } from 'geist/font/sans'; // Import from the local package
+import { GeistMono } from 'geist/font/mono'; // Import from the local package
+import './globals.css'; // Ensure this path is correct (should be if fixed previously)
+import { Toaster } from "@/components/ui/toaster";
 
-import React from 'react';
-import { Geist_Sans } from 'next/font/google'; // Corrected import name if using Geist v1+
-import { Geist_Mono } from 'next/font/google'; // Corrected import name
-import './globals.css';
-import { Toaster } from "@/components/ui/toaster"; // Keep this if Toaster component is ready
+// No need to call GeistSans() or GeistMono() like a function here,
+// we just use their class names directly or their variable names.
 
-const geistSans = Geist_Sans({ // Use the imported name
-  variable: '--font-geist-sans',
-  subsets: ['latin'], // Add subsets if needed, or remove if not
-});
-
-const geistMono = Geist_Mono({ // Use the imported name
-  variable: '--font-geist-mono',
-  subsets: ['latin'], // Add subsets if needed, or remove if not
-});
+export const metadata = { // Your metadata can stay the same
+  title: 'Remote Guardian',
+  description: 'Secure remote management for your devices.',
+};
 
 export default function RootLayout({
   children,
@@ -22,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}> {/* Use the .variable property */}
+      <body className={`antialiased`}> {/* Font variables applied on html, antialiased on body */}
         {children}
         <Toaster />
       </body>

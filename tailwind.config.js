@@ -8,7 +8,11 @@ module.exports = {
   ],
   theme: {
   	extend: {
-  		borderRadius: {
+                fontFamily: { // Add this section
+                            sans: ['var(--font-geist-sans)'],
+                            mono: ['var(--font-geist-mono)'],
+  		},
+                borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
