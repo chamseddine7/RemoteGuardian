@@ -91,7 +91,7 @@ export default function NewSessionPage() {
         </CardContent>
         {sessionId && (
           <CardContent>
-            <Link href={`/dashboard/sessions/${sessionId}/files`} passHref>
+            <Link href={`/dashboard/sessions/${sessionId}/files`} passHref legacyBehavior>
               <Button className="w-full text-lg py-3">
                 Proceed to Session Management
                 <ArrowRight className="ml-2 h-5 w-5" />
