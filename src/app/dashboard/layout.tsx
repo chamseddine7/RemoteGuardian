@@ -70,7 +70,7 @@ export default function DashboardLayout({
               <SidebarMenuItem>
                 {/* MODIFIED LINK START */}
                 <SidebarMenuButton isActive={isActive('/dashboard', true)} tooltip="Dashboard" asChild>
-                  <Link href="/dashboard">
+                  <Link href="/dashboard" legacyBehavior>
                     <LayoutDashboard />
                     Dashboard
                   </Link>
@@ -95,7 +95,7 @@ export default function DashboardLayout({
                     <SidebarMenuSubItem>
                       {/* MODIFIED LINK START */}
                       <SidebarMenuSubButton isActive={isActive('/dashboard/sessions/new')} asChild>
-                        <Link href="/dashboard/sessions/new">
+                        <Link href="/dashboard/sessions/new" legacyBehavior>
                           <QrCode size={16}/> New Session (Link)
                         </Link>
                       </SidebarMenuSubButton>
@@ -144,7 +144,7 @@ export default function DashboardLayout({
               <SidebarMenuItem>
                 {/* MODIFIED LINK START - For disabled/soon links, still apply the pattern if it's a Link */}
                 <SidebarMenuButton tooltip="User Management (Soon)" className="cursor-not-allowed opacity-50" asChild>
-                  <Link href="#">
+                  <Link href="#" legacyBehavior>
                     <Users />
                     User Management
                   </Link>
@@ -154,7 +154,7 @@ export default function DashboardLayout({
               <SidebarMenuItem>
                 {/* MODIFIED LINK START */}
                 <SidebarMenuButton tooltip="Security Logs (Soon)" className="cursor-not-allowed opacity-50" asChild>
-                  <Link href="#">
+                  <Link href="#" legacyBehavior>
                     <ShieldAlert />
                     Security Logs
                   </Link>
@@ -170,7 +170,7 @@ export default function DashboardLayout({
             <SidebarMenuItem>
               {/* MODIFIED LINK START */}
               <SidebarMenuButton tooltip="Settings (Soon)" className="cursor-not-allowed opacity-50" asChild>
-                <Link href="#">
+                <Link href="#" legacyBehavior>
                   <Settings />
                   Settings
                 </Link>
@@ -180,7 +180,7 @@ export default function DashboardLayout({
             <SidebarMenuItem>
               {/* MODIFIED LINK START */}
               <SidebarMenuButton tooltip="Logout" asChild>
-                <Link href="/login">
+                <Link href="/login" legacyBehavior>
                   <LogOut />
                   Logout
                 </Link>

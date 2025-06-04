@@ -67,20 +67,18 @@ export default function DashboardPage() {
         </div>
         {/* MODIFIED LINK START */}
         <Button size="lg" asChild>
-          <Link href="/dashboard/sessions/new">
+          <Link href="/dashboard/sessions/new" legacyBehavior>
             <PlusCircle className="mr-2 h-5 w-5" /> Start New Session
           </Link>
         </Button>
         {/* MODIFIED LINK END */}
       </div>
-
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <MetricCard title="Active Sessions" value={activeSessions.length.toString()} icon={Activity} description={`+${activeSessions.length > 1 ? '1' : '0'} since last week`} className="shadow-sm hover:shadow-md transition-shadow"/>
         <MetricCard title="AI Suggestions" value="5" icon={BotMessageSquare} description="New insights available" className="shadow-sm hover:shadow-md transition-shadow"/>
         <MetricCard title="Security Alerts" value="0" icon={ShieldCheck} description="All systems nominal" className="shadow-sm hover:shadow-md transition-shadow"/>
         <MetricCard title="Pending Commands" value="1" icon={ListChecks} description="Action required for Office PC" className="shadow-sm hover:shadow-md transition-shadow"/>
       </div>
-      
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Active Sessions Overview</CardTitle>
@@ -98,7 +96,6 @@ export default function DashboardPage() {
           )}
         </CardContent>
       </Card>
-
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Quick Actions</CardTitle>
@@ -106,7 +103,7 @@ export default function DashboardPage() {
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* MODIFIED LINK START */}
           <Button variant="outline" className="w-full justify-start p-6 text-left h-auto" asChild>
-            <Link href="/dashboard/sessions/new">
+            <Link href="/dashboard/sessions/new" legacyBehavior>
               <div className="flex items-center">
                 <PlusCircle className="mr-3 h-6 w-6 text-primary" />
                 <div>
@@ -119,7 +116,7 @@ export default function DashboardPage() {
           {/* MODIFIED LINK END */}
           {/* MODIFIED LINK START */}
           <Button variant="outline" className="w-full justify-start p-6 text-left h-auto" asChild>
-            <Link href="/dashboard/ai-tools/command-suggester">
+            <Link href="/dashboard/ai-tools/command-suggester" legacyBehavior>
               <div className="flex items-center">
                 <BotMessageSquare className="mr-3 h-6 w-6 text-primary" />
                 <div>
