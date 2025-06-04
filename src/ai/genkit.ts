@@ -1,10 +1,10 @@
 import { configureGenkit } from '@genkit-ai/core';
 import { googleAI } from '@genkit-ai/googleai';
-import { defineModel } from '@genkit-ai/ai'; // Ensure you have @genkit-ai/ai installed
+import { defineModel } from '@genkit-ai/ai';
 
 // Define and export your model
-export const geminiPro = defineModel({
-  name: 'googleAI/gemini-pro', // This is just an identifier for Genkit
+export const geminiProModel = defineModel({
+  name: 'gemini-pro', // This is just an identifier for Genkit
   label: 'Google AI - Gemini Pro',
   // Assuming you have GOOGLE_API_KEY in your .env.local for the googleAI plugin
   // The actual model used by the googleAI plugin will be determined by its internal config
