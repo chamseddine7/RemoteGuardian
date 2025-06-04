@@ -28,10 +28,10 @@ import {
   SidebarMenuSubButton,
   SidebarTrigger,
   SidebarInset,
-} from '@/components/ui/sidebar';
-import { Logo } from '@/components/icons/Logo';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+} from '@/components/ui/sidebar'; //
+import { Logo } from '@/components/icons/Logo'; //
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'; //
+import { Button } from '@/components/ui/button'; //
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -39,8 +39,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ScrollArea } from '@/components/ui/scroll-area';
+} from '@/components/ui/dropdown-menu'; //
+import { ScrollArea } from '@/components/ui/scroll-area'; //
 import React from 'react';
 
 export default function DashboardLayout({
@@ -54,10 +54,9 @@ export default function DashboardLayout({
     if (exact) return pathname === path;
     return pathname.startsWith(path);
   };
-  
+
   const [isSessionsOpen, setIsSessionsOpen] = React.useState(isActive('/dashboard/sessions'));
   const [isAiToolsOpen, setIsAiToolsOpen] = React.useState(isActive('/dashboard/ai-tools'));
-
 
   return (
     <SidebarProvider defaultOpen>
@@ -69,12 +68,14 @@ export default function DashboardLayout({
           <SidebarContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <Link href="/dashboard" passHref legacyBehavior>
-                  <SidebarMenuButton isActive={isActive('/dashboard', true)} tooltip="Dashboard">
+                {/* MODIFIED LINK START */}
+                <SidebarMenuButton isActive={isActive('/dashboard', true)} tooltip="Dashboard" asChild>
+                  <Link href="/dashboard">
                     <LayoutDashboard />
                     Dashboard
-                  </SidebarMenuButton>
-                </Link>
+                  </Link>
+                </SidebarMenuButton>
+                {/* MODIFIED LINK END */}
               </SidebarMenuItem>
 
               <SidebarMenuItem>
@@ -92,19 +93,22 @@ export default function DashboardLayout({
                 {isSessionsOpen && (
                   <SidebarMenuSub>
                     <SidebarMenuSubItem>
-                      <Link href="/dashboard/sessions/new" passHref legacyBehavior>
-                        <SidebarMenuSubButton isActive={isActive('/dashboard/sessions/new')}>
+                      {/* MODIFIED LINK START */}
+                      <SidebarMenuSubButton isActive={isActive('/dashboard/sessions/new')} asChild>
+                        <Link href="/dashboard/sessions/new">
                           <QrCode size={16}/> New Session (Link)
-                        </SidebarMenuSubButton>
-                      </Link>
+                        </Link>
+                      </SidebarMenuSubButton>
+                      {/* MODIFIED LINK END */}
                     </SidebarMenuSubItem>
-                    {/* Example of how to list active sessions dynamically if needed */}
-                     <SidebarMenuSubItem>
-                      <Link href="/dashboard/sessions/mock-session-123/files" passHref legacyBehavior>
-                        <SidebarMenuSubButton isActive={isActive('/dashboard/sessions/mock-session-123')}>
+                    <SidebarMenuSubItem>
+                      {/* MODIFIED LINK START */}
+                      <SidebarMenuSubButton isActive={isActive('/dashboard/sessions/mock-session-123')} asChild>
+                        <Link href="/dashboard/sessions/mock-session-123/files">
                           Active Session 123
-                        </SidebarMenuSubButton>
-                      </Link>
+                        </Link>
+                      </SidebarMenuSubButton>
+                      {/* MODIFIED LINK END */}
                     </SidebarMenuSubItem>
                   </SidebarMenuSub>
                 )}
@@ -123,56 +127,66 @@ export default function DashboardLayout({
                   {isAiToolsOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                 </SidebarMenuButton>
                 {isAiToolsOpen && (
-                   <SidebarMenuSub>
+                  <SidebarMenuSub>
                     <SidebarMenuSubItem>
-                      <Link href="/dashboard/ai-tools/command-suggester" passHref legacyBehavior>
-                        <SidebarMenuSubButton isActive={isActive('/dashboard/ai-tools/command-suggester')}>
+                      {/* MODIFIED LINK START */}
+                      <SidebarMenuSubButton isActive={isActive('/dashboard/ai-tools/command-suggester')} asChild>
+                        <Link href="/dashboard/ai-tools/command-suggester">
                           Command Suggester
-                        </SidebarMenuSubButton>
-                      </Link>
+                        </Link>
+                      </SidebarMenuSubButton>
+                      {/* MODIFIED LINK END */}
                     </SidebarMenuSubItem>
                   </SidebarMenuSub>
                 )}
               </SidebarMenuItem>
-              
+
               <SidebarMenuItem>
-                <Link href="#" passHref legacyBehavior>
-                  <SidebarMenuButton tooltip="User Management (Soon)" className="cursor-not-allowed opacity-50">
+                {/* MODIFIED LINK START - For disabled/soon links, still apply the pattern if it's a Link */}
+                <SidebarMenuButton tooltip="User Management (Soon)" className="cursor-not-allowed opacity-50" asChild>
+                  <Link href="#">
                     <Users />
                     User Management
-                  </SidebarMenuButton>
-                </Link>
+                  </Link>
+                </SidebarMenuButton>
+                {/* MODIFIED LINK END */}
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="#" passHref legacyBehavior>
-                  <SidebarMenuButton tooltip="Security Logs (Soon)" className="cursor-not-allowed opacity-50">
+                {/* MODIFIED LINK START */}
+                <SidebarMenuButton tooltip="Security Logs (Soon)" className="cursor-not-allowed opacity-50" asChild>
+                  <Link href="#">
                     <ShieldAlert />
                     Security Logs
-                  </SidebarMenuButton>
-                </Link>
+                  </Link>
+                </SidebarMenuButton>
+                {/* MODIFIED LINK END */}
               </SidebarMenuItem>
 
             </SidebarMenu>
           </SidebarContent>
         </ScrollArea>
         <SidebarFooter>
-           <SidebarMenu>
+            <SidebarMenu>
             <SidebarMenuItem>
-                <Link href="#" passHref legacyBehavior>
-                  <SidebarMenuButton tooltip="Settings (Soon)" className="cursor-not-allowed opacity-50">
-                    <Settings />
-                    Settings
-                  </SidebarMenuButton>
+              {/* MODIFIED LINK START */}
+              <SidebarMenuButton tooltip="Settings (Soon)" className="cursor-not-allowed opacity-50" asChild>
+                <Link href="#">
+                  <Settings />
+                  Settings
                 </Link>
-              </SidebarMenuItem>
+              </SidebarMenuButton>
+              {/* MODIFIED LINK END */}
+            </SidebarMenuItem>
             <SidebarMenuItem>
-                <Link href="/login" passHref legacyBehavior>
-                  <SidebarMenuButton tooltip="Logout">
-                    <LogOut />
-                    Logout
-                  </SidebarMenuButton>
+              {/* MODIFIED LINK START */}
+              <SidebarMenuButton tooltip="Logout" asChild>
+                <Link href="/login">
+                  <LogOut />
+                  Logout
                 </Link>
-              </SidebarMenuItem>
+              </SidebarMenuButton>
+              {/* MODIFIED LINK END */}
+            </SidebarMenuItem>
            </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
@@ -199,9 +213,13 @@ export default function DashboardLayout({
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-               <Link href="/login" passHref legacyBehavior><DropdownMenuItem>Logout</DropdownMenuItem></Link>
+              {/* MODIFIED LINK START - This one is wrapping DropdownMenuItem */}
+              <DropdownMenuItem asChild>
+                <Link href="/login">Logout</Link>
+              </DropdownMenuItem>
+              {/* MODIFIED LINK END */}
             </DropdownMenuContent>
-          </DropdownMenu>
+           </DropdownMenu>
         </header>
         <main className="flex-1 p-4 sm:p-6 bg-muted/40">
             {children}
