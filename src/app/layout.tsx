@@ -17,8 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}> {/* Use the .variable property */}
-      <body className={`antialiased`}> {/* Font variables applied on html, antialiased on body */}
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      {/* NO WHITESPACE OR {" "} HERE */}
+      <head>
+        {/* You can add meta tags, title (though metadata object is preferred) here */}
+      </head>
+      {/* NO WHITESPACE OR {" "} HERE EITHER */}
+      <body className={`antialiased`}>
         {children}
         <Toaster />
       </body>
