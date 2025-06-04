@@ -15,11 +15,6 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Remote Guardian',
-  description: 'Secure remote management for your devices.',
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
