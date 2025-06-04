@@ -4,7 +4,6 @@
 import '@/ai/genkit'; // IMPORTANT: Import for side effect to run configureGenkit()
 
 import { defineFlow, definePrompt } from '@genkit-ai/ai'; // Correct imports
-model: 'gemini-1.5-flash-latest',
 import { z } from 'zod'; // Use zod directly for schema definition
 
 export const SuggestMaintenanceCommandsInputSchema = z.object({
@@ -42,17 +41,9 @@ Explain your reasoning for each suggested command.
 
 Device Logs:
 {{deviceLogs}}`,
-    // You can specify the model directly here:
-    model: geminiPro, // Using the imported model from @genkit-ai/googleai
-                      // You can also use model names like 'gemini-pro' if the googleAI plugin is configured.
-    // Or, configure the model with options:
-    // model: {
-    //   name: 'gemini-pro', // Or other compatible models from Google AI like 'gemini-1.5-flash-latest'
-    //   config: { temperature: 0.5 }
-    // },
+    model: 'gemini-1.5-flash-latest', // <<-- MAKE SURE THIS IS CORRECTLY PLACED HERE
   }
 );
-
 // Define the flow
 const suggestMaintenanceCommandsInternalFlow = defineFlow(
   {
