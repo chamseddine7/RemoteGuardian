@@ -18,12 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      {/* NO WHITESPACE OR {" "} HERE */}
       <head>
         {/* You can add meta tags, title (though metadata object is preferred) here */}
       </head>
-      {/* NO WHITESPACE OR {" "} HERE EITHER */}
-      <body className={`antialiased`}>
+      <body className="antialiased">
         {children}
         <Toaster />
       </body>
