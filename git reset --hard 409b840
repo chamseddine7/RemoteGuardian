@@ -1,0 +1,28 @@
+* [33me221cee[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fix: Revert login page content and attempt to fix hydration error in layout.tsx
+* [33mb130b3b[m feat: Integrate loading spinner and state into login form handleSubmit
+* [33m927feeb[m feat: Integrate loading spinner and state into login form handleSubmit
+* [33m409b840[m[33m ([m[1;31morigin/main[m[33m)[m feat: Add comprehensive set of shadcn/ui components
+* [33m872e879[m feat: Add shadcn/ui badge component
+* [33m117f234[m feat: Proactively add a comprehensive set of shadcn/ui components to prevent module errors
+* [33mf8fde00[m feat: Add shadcn/ui skeleton component
+* [33m3028862[m feat: Add shadcn/ui sheet component
+* [33ma3d5bb5[m feat: Add custom sidebar UI component
+* [33m67f9715[m feat: Proactively add a comprehensive set of shadcn/ui components
+* [33maf7816f[m feat: Add shadcn/ui dropdown-menu component
+* [33m56a93e3[m feat: Add missing shadcn/ui avatar component
+* [33m7ee7af9[m feat: Add essential shadcn/ui components (button, card, input, label, toast, toaster) and ensure correct file structure
+* [33m52f69bf[m chore: Add auto-generated tsconfig.json by Next.js
+* [33m2696498[m feat: Add custom hooks (use-toast, use-mobile)
+* [33m75c017b[m feat: Add utility functions
+* [33m0025d30[m feat: Implement Genkit setup and maintenance commands flow
+* [33mde9ce6a[m feat: Add Logo and Progress components
+* [33mc2c3077[m feat: Add core application components
+* [33m3e2a6ab[m feat: Implement individual session views and layout
+* [33m3ff9dae[m feat: Add new session page
+* [33mb1e1acf[m feat: Implement AI command suggester page and actions
+* [33mde057f4[m feat: Add login page and basic dashboard structure
+* [33mac6c491[m feat: Add core app layout, global styles, and homepage
+*   [33m1c6bea5[m Merge branch 'main' of https://github.com/chamseddine7/RemoteGuardian
+[32m|[m[33m\[m  
+[32m|[m * [33mbd0c27e[m Initial commit
+* [33m5256b00[m Initial commit: Project setup, dependencies, gitignore, and Next.js config

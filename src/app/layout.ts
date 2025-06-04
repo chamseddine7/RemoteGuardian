@@ -1,4 +1,5 @@
 // src/app/layout.ts
+// This file is a Server Component to export Metadata
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
