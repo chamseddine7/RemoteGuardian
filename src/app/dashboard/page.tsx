@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button'; //
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'; //
 import { Activity, PlusCircle, BotMessageSquare, ShieldCheck, ListChecks } from 'lucide-react';
 
 interface MetricCardProps {
@@ -42,9 +42,11 @@ const ActiveSessionItem: React.FC<{session: ActiveSession}> = React.memo(({ sess
       </p>
       <p className="text-xs text-muted-foreground">Last activity: {session.lastActivity}</p>
     </div>
-    <Link href={`/dashboard/sessions/${session.id}/files`} passHref legacyBehavior>
-      <Button variant="outline" size="sm" asChild><a>Manage</a></Button>
-    </Link>
+    {/* MODIFIED LINK START */}
+    <Button variant="outline" size="sm" asChild>
+      <Link href={`/dashboard/sessions/${session.id}/files`}>Manage</Link>
+    </Button>
+    {/* MODIFIED LINK END */}
   </li>
 ));
 ActiveSessionItem.displayName = 'ActiveSessionItem';
@@ -63,11 +65,13 @@ export default function DashboardPage() {
           <h1 className="text-3xl font-bold tracking-tight">Welcome to Remote Guardian</h1>
           <p className="text-muted-foreground">Oversee and manage your connected devices with ease.</p>
         </div>
-        <Link href="/dashboard/sessions/new" passHref legacyBehavior>
-          <Button size="lg" asChild>
-            <a><PlusCircle className="mr-2 h-5 w-5" /> Start New Session</a>
-          </Button>
-        </Link>
+        {/* MODIFIED LINK START */}
+        <Button size="lg" asChild>
+          <Link href="/dashboard/sessions/new">
+            <PlusCircle className="mr-2 h-5 w-5" /> Start New Session
+          </Link>
+        </Button>
+        {/* MODIFIED LINK END */}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -100,32 +104,32 @@ export default function DashboardPage() {
           <CardTitle>Quick Actions</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Link href="/dashboard/sessions/new" passHref legacyBehavior>
-            <Button variant="outline" className="w-full justify-start p-6 text-left h-auto" asChild>
-              <a>
-                <div className="flex items-center">
-                  <PlusCircle className="mr-3 h-6 w-6 text-primary" />
-                  <div>
-                    <h4 className="font-semibold">Pair New Device</h4>
-                    <p className="text-xs text-muted-foreground">Generate session link for a new session.</p>
-                  </div>
+          {/* MODIFIED LINK START */}
+          <Button variant="outline" className="w-full justify-start p-6 text-left h-auto" asChild>
+            <Link href="/dashboard/sessions/new">
+              <div className="flex items-center">
+                <PlusCircle className="mr-3 h-6 w-6 text-primary" />
+                <div>
+                  <h4 className="font-semibold">Pair New Device</h4>
+                  <p className="text-xs text-muted-foreground">Generate session link for a new session.</p>
                 </div>
-              </a>
-            </Button>
-          </Link>
-          <Link href="/dashboard/ai-tools/command-suggester" passHref legacyBehavior>
-            <Button variant="outline" className="w-full justify-start p-6 text-left h-auto" asChild>
-              <a>
-                <div className="flex items-center">
-                  <BotMessageSquare className="mr-3 h-6 w-6 text-primary" />
-                  <div>
-                    <h4 className="font-semibold">AI Command Suggester</h4>
-                    <p className="text-xs text-muted-foreground">Get smart maintenance suggestions.</p>
-                  </div>
+              </div>
+            </Link>
+          </Button>
+          {/* MODIFIED LINK END */}
+          {/* MODIFIED LINK START */}
+          <Button variant="outline" className="w-full justify-start p-6 text-left h-auto" asChild>
+            <Link href="/dashboard/ai-tools/command-suggester">
+              <div className="flex items-center">
+                <BotMessageSquare className="mr-3 h-6 w-6 text-primary" />
+                <div>
+                  <h4 className="font-semibold">AI Command Suggester</h4>
+                  <p className="text-xs text-muted-foreground">Get smart maintenance suggestions.</p>
                 </div>
-              </a>
-            </Button>
-          </Link>
+              </div>
+            </Link>
+          </Button>
+          {/* MODIFIED LINK END */}
           <Button variant="outline" disabled className="w-full justify-start p-6 text-left h-auto cursor-not-allowed">
             <div className="flex items-center">
               <ShieldCheck className="mr-3 h-6 w-6 text-muted-foreground" />
