@@ -1,6 +1,5 @@
-"use client"; // ADD THIS LINE AS THE VERY FIRST LINE
+"use client"; // Keep this as the very first line for client-side functionality
 
-import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
@@ -14,6 +13,9 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 });
+
+// Note: metadata is now exported from src/app/layout.ts
+// Do NOT export metadata from this file as it is a "use client" component.
 
 export default function RootLayout({
   children,
