@@ -70,9 +70,11 @@ export default function DashboardLayout({
               <SidebarMenuItem>
                 {/* MODIFIED LINK START */}
                 <SidebarMenuButton isActive={isActive('/dashboard', true)} tooltip="Dashboard" asChild>
-                  <Link href="/dashboard" legacyBehavior>
-                    <LayoutDashboard />
-                    Dashboard
+                  <Link href="/dashboard">
+                     <span className="flex items-center gap-2"> {/* Wrap in a span */}
+                      <LayoutDashboard />
+                       Dashboard
+                     </span>
                   </Link>
                 </SidebarMenuButton>
                 {/* MODIFIED LINK END */}
