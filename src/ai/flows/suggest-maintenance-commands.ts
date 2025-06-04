@@ -4,7 +4,7 @@
 import '@/ai/genkit'; // IMPORTANT: Import for side effect to run configureGenkit()
 
 import { defineFlow, definePrompt } from '@genkit-ai/ai'; // Correct imports
-import { geminiPro } from '@genkit-ai/googleai';    // Import a specific model reference
+model: 'gemini-1.5-flash-latest',
 import { z } from 'zod'; // Use zod directly for schema definition
 
 export const SuggestMaintenanceCommandsInputSchema = z.object({
